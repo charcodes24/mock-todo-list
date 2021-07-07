@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import NewTodo from "./NewTodo";
 import TodoList from "./TodoList";
 
 import './App.css';
@@ -10,13 +11,15 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:3000/todo')
       .then(res => res.json())
-      .then(data => console.log(data.todo))
+      .then(data => setTodos(data))
   }, []);
 
-  console.log(todos)
   return (
     <div className="App">
-      <TodoList />
+      <NewTodo />
+      <TodoList 
+        todos={todos}
+      />
     </div>
   );
 }
