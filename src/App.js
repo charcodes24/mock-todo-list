@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
+
+import TodoList from "./TodoList";
+
 import './App.css';
 
 function App() {
+  const [todos, setTodos] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/todo')
+      .then(res => res.json())
+      .then(data => console.log(data.todo))
+  }, []);
+
+  console.log(todos)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TodoList />
     </div>
   );
 }
